@@ -44,11 +44,11 @@ public class CourseServiceTest {
         List<Course> resultCourses = courseService.getAllCourses();
 
 
-        verify(courseRepository, times(1)).findAll(); // Ensure that the repository method was called exactly once
+        verify(courseRepository, times(1)).findAll(); 
 
 
-        assertEquals(2, resultCourses.size()); // Verify the size of the returned course list
-        assertEquals("Course 1", resultCourses.get(0).getTitle()); // Verify course names or other attributes
+        assertEquals(2, resultCourses.size()); 
+        assertEquals("Course 1", resultCourses.get(0).getTitle());
         assertEquals("Course 2", resultCourses.get(1).getTitle());
     }
 
@@ -67,15 +67,15 @@ public class CourseServiceTest {
         Course resultCourseExisting = courseService.getCourseById(1L);
 
 
-        verify(courseRepository, times(1)).findById(1L); // Ensure that the repository method was called exactly once
-        assertNotNull(resultCourseExisting); // Verify that a course is returned
-        assertEquals("Mock Course", resultCourseExisting.getTitle()); // Verify course name or other attributes
+        verify(courseRepository, times(1)).findById(1L); 
+        assertNotNull(resultCourseExisting);
+        assertEquals("Mock Course", resultCourseExisting.getTitle()); 
 
 
         Course resultCourseNonExisting = courseService.getCourseById(2L);
 
 
-        verify(courseRepository, times(1)).findById(2L); // Ensure that the repository method was called exactly once
+        verify(courseRepository, times(1)).findById(2L); 
         assertNull(resultCourseNonExisting);
     }
 
@@ -94,9 +94,9 @@ public class CourseServiceTest {
         Course resultCourse = courseService.createCourse(mockCourseToSave);
 
 
-        verify(courseRepository, times(1)).save(mockCourseToSave); // Ensure that the repository method was called exactly once
-        assertNotNull(resultCourse); // Verify that a course is returned
-        assertEquals(1L, resultCourse.getId()); // Verify the ID of the returned course
+        verify(courseRepository, times(1)).save(mockCourseToSave); 
+        assertNotNull(resultCourse); 
+        assertEquals(1L, resultCourse.getId()); 
         assertEquals("New Course", resultCourse.getTitle());
     }
 
@@ -116,10 +116,10 @@ public class CourseServiceTest {
         Course resultCourse = courseService.updateCourse(1L, updatedCourse);
 
 
-        verify(courseRepository, times(1)).existsById(1L); // Ensure that existsById was called
-        verify(courseRepository, times(1)).save(updatedCourse); // Ensure that save was called
-        assertNotNull(resultCourse); // Verify that a course is returned
-        assertEquals(1L, resultCourse.getId()); // Verify the ID of the returned course
+        verify(courseRepository, times(1)).existsById(1L); 
+        verify(courseRepository, times(1)).save(updatedCourse);
+        assertNotNull(resultCourse); 
+        assertEquals(1L, resultCourse.getId()); 
         assertEquals("Updated Course", resultCourse.getTitle());
     }
 
@@ -136,8 +136,8 @@ public class CourseServiceTest {
         boolean result = courseService.deleteCourse(1L);
 
 
-        verify(courseRepository, times(1)).existsById(1L); // Ensure that existsById was called
-        verify(courseRepository, times(1)).deleteById(1L); // Ensure that deleteById was called
+        verify(courseRepository, times(1)).existsById(1L);
+        verify(courseRepository, times(1)).deleteById(1L);
         assertTrue(result);
     }
 }
